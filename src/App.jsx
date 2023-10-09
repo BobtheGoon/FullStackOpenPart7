@@ -63,6 +63,9 @@ const CreateNew = (props) => {
     info.reset()
   }
 
+  const removeProperty = () => ({['reset']:remove, ...rest}) => rest
+  const removeReset = removeProperty('reset')
+
   const handleSubmit = (e) => {
     e.preventDefault()
 
@@ -78,15 +81,15 @@ const CreateNew = (props) => {
       <form onSubmit={handleSubmit}>
         <div>
           content
-          <input name='content' {...content} />
+          <input name='content' {...removeReset(content)} />
         </div>
         <div>
           author
-          <input name='author' {...author} />
+          <input name='author' {...removeReset(author)} />
         </div>
         <div>
           url for more info
-          <input name='info' {...info} />
+          <input name='info' {...removeReset(info)} />
         </div>
         <button>create</button>
         <button onClick={resetFields}>reset</button>
