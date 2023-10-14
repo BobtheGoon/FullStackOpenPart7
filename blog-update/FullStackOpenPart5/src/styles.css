@@ -1,0 +1,34 @@
+.blog_form {
+  display: flex;
+  width: 20rem;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.blog {
+  margin: 1rem 0 1rem 0;
+  width: 40%;
+  border: solid black 2px;
+}
+
+.blog > * {
+  margin: 0.5rem 0 0.5rem 0.5rem;
+}
+
+.blog_likes {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.blog_likes > button {
+  align-self: center;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}
