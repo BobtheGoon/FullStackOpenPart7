@@ -21,9 +21,7 @@ const App = () => {
   const blogFormRef = useRef()
 
   useEffect(() => {
-    blogService.getAll().then(blogs =>
-      setBlogs( blogs )
-    )
+    blogService.getAll().then((blogs) => setBlogs(blogs))
   }, [])
 
   useEffect(() => {
@@ -49,8 +47,7 @@ const App = () => {
       setUser(user)
       setUserName('')
       setPassword('')
-    }
-    catch (exception) {
+    } catch (exception) {
       console.log('failure')
       setInfoMessage('Wrong username or password')
       setInfoStyle('error')
@@ -105,7 +102,10 @@ const App = () => {
 
   const removeBlog = (blogObject) => {
     //Confirm deletion
-    if (!window.confirm(`Remove blog ${blogObject.title} by ${blogObject.author}`)) return
+    if (
+      !window.confirm(`Remove blog ${blogObject.title} by ${blogObject.author}`)
+    )
+      return
 
     blogService.deleteBlog(blogObject)
 
@@ -126,50 +126,70 @@ const App = () => {
 
   const sortBlogsByLikes = (a, b) => {
     let order
-    Number(a.props.blog.likes) > Number(b.props.blog.likes) ? order = 0 : order = 1
+    Number(a.props.blog.likes) > Number(b.props.blog.likes)
+      ? (order = 0)
+      : (order = 1)
     return order
   }
 
   return (
     <div>
-
       <h2>Blogs</h2>
       <InfoMessage message={infoMessage} style={infoStyle} />
 
-      {!user &&
-      <div>
-        <Togglable buttonLabel='Login'>
-          <LoginForm username={username} setUserName={setUserName} password={password} setPassword={setPassword} handleLogin={handleLogin} infoMessage={infoMessage} infoStyle={infoStyle}/>
-        </Togglable>
-      </div>
-      }
-
-      {user &&
-      <div>
+      {!user && (
         <div>
-          {user.username} logged in
-          <button onClick={handleLogout}>Log out</button>
+          <Togglable buttonLabel="Login">
+            <LoginForm
+              username={username}
+              setUserName={setUserName}
+              password={password}
+              setPassword={setPassword}
+              handleLogin={handleLogin}
+              infoMessage={infoMessage}
+              infoStyle={infoStyle}
+            />
+          </Togglable>
         </div>
+      )}
 
-        <Togglable buttonLabel='Add blog' ref={blogFormRef}>
-          <BlogForm addBlog={addBlog}/>
-        </Togglable>
+      {user && (
+        <div>
+          <div>
+            {user.username} logged in
+            <button onClick={handleLogout}>Log out</button>
+          </div>
 
-        {blogs
-          .map(blog => {
-            if (blog.user.username === user.username) {
-              return <Blog key={blog._id} blog={blog} addLike={addLike} showRemove={true} removeBlog={removeBlog} />
-            }
+          <Togglable buttonLabel="Add blog" ref={blogFormRef}>
+            <BlogForm addBlog={addBlog} />
+          </Togglable>
 
-            else {
-              return <Blog key={blog._id} blog={blog} addLike={addLike} showRemove={false} />
-            }
-          })
-          .sort(sortBlogsByLikes)}
-
-      </div>
-      }
-
+          {blogs
+            .map((blog) => {
+              if (blog.user.username === user.username) {
+                return (
+                  <Blog
+                    key={blog._id}
+                    blog={blog}
+                    addLike={addLike}
+                    showRemove={true}
+                    removeBlog={removeBlog}
+                  />
+                )
+              } else {
+                return (
+                  <Blog
+                    key={blog._id}
+                    blog={blog}
+                    addLike={addLike}
+                    showRemove={false}
+                  />
+                )
+              }
+            })
+            .sort(sortBlogsByLikes)}
+        </div>
+      )}
     </div>
   )
 }

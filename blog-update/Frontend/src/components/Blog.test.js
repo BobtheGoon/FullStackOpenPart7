@@ -14,7 +14,7 @@ describe('<Blog/>', () => {
     user: {
       username: 'Jest',
       name: 'Jest Tester',
-    }
+    },
   }
 
   test('renders blog title', () => {
@@ -22,7 +22,7 @@ describe('<Blog/>', () => {
     screen.getByText('Testing blog')
   })
 
-  test('likes and url are displayed when show more is clicked', async() => {
+  test('likes and url are displayed when show more is clicked', async () => {
     const mockHandler = jest.fn()
     render(<Blog blog={blog}></Blog>)
 
@@ -32,10 +32,10 @@ describe('<Blog/>', () => {
 
     screen.getByText('Jest')
     screen.getByText('JestTest.com')
-    screen.getByText('Be the first to like this post!')    
+    screen.getByText('Be the first to like this post!')
   })
 
-  test('like button eventhandler is called twice when button is clicked twice', async() => {
+  test('like button eventhandler is called twice when button is clicked twice', async () => {
     const mockHandler = jest.fn()
     render(<Blog blog={blog} addLike={mockHandler}></Blog>)
 

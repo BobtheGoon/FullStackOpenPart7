@@ -14,17 +14,17 @@ describe('<BlogForm/>', () => {
     user: {
       username: 'Jest',
       name: 'Jest Tester',
-    }
+    },
   }
 
-  test('BlogForm calls callback function with correct props', async() => {
+  test('BlogForm calls callback function with correct props', async () => {
     const user = userEvent.setup()
     const addBlog = jest.fn()
-    render(<BlogForm addBlog={addBlog}/>)
+    render(<BlogForm addBlog={addBlog} />)
 
-    const title_input = screen.getByLabelText(('Title'))
-    const author_input = screen.getByLabelText(('Author'))
-    const url_input = screen.getByLabelText(('URL'))
+    const title_input = screen.getByLabelText('Title')
+    const author_input = screen.getByLabelText('Author')
+    const url_input = screen.getByLabelText('URL')
     const submit_btn = screen.getByText('Create')
 
     await user.type(title_input, blog.title)

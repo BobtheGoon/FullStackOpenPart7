@@ -10,7 +10,7 @@ const BlogForm = ({ addBlog }) => {
     addBlog({
       title: title,
       author: author,
-      url: url
+      url: url,
     })
 
     setTitle('')
@@ -32,14 +32,16 @@ const BlogForm = ({ addBlog }) => {
 
   return (
     <div>
-      <form className='blog_form' onSubmit={createBlog}>
-        <label htmlFor='title'>Title</label>
-        <input value={title} id='title' onChange={handleTitleChange}/>
-        <label htmlFor='author'>Author</label>
-        <input value={author} id='author' onChange={handleAuthorChange}/>
-        <label htmlFor='url'>URL</label>
-        <input value={url} id='url' onChange={handleUrlChange}/>
-        <button type='submit' id='submit_blog_btn'>Create</button>
+      <form className="blog_form" onSubmit={createBlog}>
+        <label htmlFor="title">Title</label>
+        <input value={title} id="title" onChange={handleTitleChange} />
+        <label htmlFor="author">Author</label>
+        <input value={author} id="author" onChange={handleAuthorChange} />
+        <label htmlFor="url">URL</label>
+        <input value={url} id="url" onChange={handleUrlChange} />
+        <button type="submit" id="submit_blog_btn">
+          Create
+        </button>
       </form>
     </div>
   )
